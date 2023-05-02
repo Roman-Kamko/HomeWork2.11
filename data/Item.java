@@ -1,7 +1,7 @@
 package edu.skypro.hamework2_11.data;
 
 public class Item {
-    private int id;
+    private final int id;
 
     public Item(int id) {
         this.id = id;
@@ -13,6 +13,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "товар id: " + this.id;
+        return "id: " + this.id;
     }
 }

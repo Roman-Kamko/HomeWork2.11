@@ -1,11 +1,9 @@
 package edu.skypro.hamework2_11.controller;
 
 import edu.skypro.hamework2_11.data.Item;
+import edu.skypro.hamework2_11.exception.InvalidInputException;
 import edu.skypro.hamework2_11.service.OrderService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -31,5 +29,10 @@ public class OrderController {
     @GetMapping(path = "get")
     public Collection<Item> get() {
         return basketService.get();
+    }
+
+    @ExceptionHandler({InvalidInputException.class})
+    public String handleExceptions() {
+        return "Некорректный ID товара";
     }
 }

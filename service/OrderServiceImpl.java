@@ -9,16 +9,17 @@ import java.util.*;
 @Service
 @SessionScope
 public class OrderServiceImpl implements OrderService {
-    private final List<Item> basketList;
+    private final List<Item> basketList = new ArrayList<>();
+    private final ValidatorService validatorService;
 
-    public OrderServiceImpl() {
-        this.basketList = new ArrayList<>();
+    public OrderServiceImpl(ValidatorService validatorService) {
+        this.validatorService = validatorService;
     }
 
     @Override
     public void add(int... id) {
         for (int i : id) {
-            basketList.add(new Item(i));
+            basketList.add(new Item(validatorService.validateItemId(i)));
         }
     }
 
